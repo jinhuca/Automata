@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="720" viewBox="0 0 1180 720" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#0f172a" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="1180" height="720" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="590" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">FSM — Architecture &amp; Dependencies</text>
+  <text x="590" y="60" text-anchor="middle" font-size="13" fill="#64748b">Generic C++20 DFA (module) · two consoles + tests · reactive transition stream</text>
+
+  <!-- Toolchain -->
+  <g filter="url(#sh)">
+    <rect x="70" y="74" width="220" height="50" rx="10" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.4"/>
+    <rect x="470" y="74" width="320" height="50" rx="10" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.4"/>
+  </g>
+  <g text-anchor="middle" fill="#713f12">
+    <text x="180" y="95" font-size="13" font-weight="700">vcpkg</text>
+    <text x="180" y="113" font-size="10.5" font-family="Consolas, monospace">manifest: vcpkg.json</text>
+    <text x="630" y="95" font-size="13" font-weight="700">Visual Studio 2026 · MSBuild</text>
+    <text x="630" y="113" font-size="10.5">platform toolset v145</text>
+  </g>
+
+  <!-- Solution container -->
+  <rect x="340" y="150" width="560" height="470" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="6 4"/>
+  <text x="356" y="172" font-size="13" font-weight="700" fill="#475569">FiniteStateMachine.sln</text>
+
+  <!-- External deps for consumers (left) -->
+  <g filter="url(#sh)">
+    <rect x="62" y="250" width="240" height="92" rx="10" fill="#f1f5f9" stroke="#64748b" stroke-width="1.3" stroke-dasharray="5 3"/>
+    <rect x="62" y="470" width="240" height="78" rx="10" fill="#f1f5f9" stroke="#64748b" stroke-width="1.3" stroke-dasharray="5 3"/>
+  </g>
+  <g text-anchor="middle" fill="#334155">
+    <text x="182" y="276" font-size="13" font-weight="700">rxcpp 4.1.1</text>
+    <text x="182" y="295" font-size="11">header-only · via vcpkg</text>
+    <text x="182" y="314" font-size="10" font-family="Consolas, monospace">#include &lt;rxcpp/rx.hpp&gt;</text>
+    <text x="182" y="331" font-size="9.5" fill="#64748b">used by demo + console_demo</text>
+    <text x="182" y="498" font-size="12.5" font-weight="700">CppUnitTestFramework</text>
+    <text x="182" y="516" font-size="11">Visual Studio native</text>
+    <text x="182" y="533" font-size="10" font-family="Consolas, monospace">link: ...CppUnitTest...lib</text>
+  </g>
+
+  <!-- Consumers -->
+  <g filter="url(#sh)">
+    <rect x="370" y="200" width="190" height="84" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+    <rect x="370" y="320" width="190" height="84" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+    <rect x="370" y="460" width="190" height="84" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+  </g>
+  <g text-anchor="middle" fill="#14532d">
+    <text x="465" y="229" font-size="14" font-weight="700">demo</text>
+    <text x="465" y="247" font-size="11">console app · parity DFA</text>
+    <text x="465" y="268" font-size="10" font-family="Consolas, monospace" fill="#166534">src/demo/main.cpp</text>
+    <text x="465" y="349" font-size="13.5" font-weight="700">console_demo</text>
+    <text x="465" y="367" font-size="11">console-state simulation</text>
+    <text x="465" y="388" font-size="9.5" font-family="Consolas, monospace" fill="#166534">src/console_demo/main.cpp</text>
+    <text x="465" y="489" font-size="14" font-weight="700">fsm.tests</text>
+    <text x="465" y="507" font-size="11">test DLL · 16 cases</text>
+    <text x="465" y="528" font-size="9.5" font-family="Consolas, monospace" fill="#166534">tests/fsm.tests/tests.cpp</text>
+  </g>
+
+  <!-- Core module -->
+  <g filter="url(#sh)">
+    <rect x="622" y="300" width="250" height="150" rx="10" fill="#e0e7ff" stroke="#4338ca" stroke-width="1.6"/>
+  </g>
+  <g text-anchor="middle" fill="#312e81">
+    <text x="747" y="326" font-size="15" font-weight="700">fsm</text>
+    <text x="747" y="345" font-size="11">static library · C++20 module</text>
+    <text x="747" y="363" font-size="10" font-family="Consolas, monospace" fill="#3730a3">src/fsm/fsm.ixx</text>
+    <text x="747" y="384" font-size="10.5">exports dfa&lt;State,Symbol&gt;, transition</text>
+    <text x="747" y="402" font-size="10.5">subscribe() reactive hook · on_entry()</text>
+    <text x="747" y="423" font-size="10" font-family="Consolas, monospace" fill="#3730a3">builds fsm.ifc + fsm.lib</text>
+    <text x="747" y="440" font-size="9.5" fill="#6366f1">depends only on the C++ stdlib</text>
+  </g>
+
+  <!-- STL header units (fsm's only dependency) -->
+  <g filter="url(#sh)">
+    <rect x="938" y="330" width="232" height="96" rx="10" fill="#f1f5f9" stroke="#64748b" stroke-width="1.3" stroke-dasharray="5 3"/>
+  </g>
+  <g text-anchor="middle" fill="#334155">
+    <text x="1054" y="356" font-size="12.5" font-weight="700">C++20 STL header units</text>
+    <text x="1054" y="375" font-size="9.5" font-family="Consolas, monospace">import &lt;functional&gt; &lt;map&gt;</text>
+    <text x="1054" y="390" font-size="9.5" font-family="Consolas, monospace">&lt;ranges&gt; &lt;set&gt; &lt;utility&gt;</text>
+    <text x="1054" y="410" font-size="9.5" fill="#64748b">auto-built: ScanSourceForModuleDependencies</text>
+  </g>
+
+  <!-- Legend -->
+  <g font-size="11.5" fill="#334155">
+    <rect x="360" y="648" width="18" height="13" rx="3" fill="#e0e7ff" stroke="#4338ca"/>
+    <text x="384" y="658">Core module</text>
+    <rect x="492" y="648" width="18" height="13" rx="3" fill="#dcfce7" stroke="#15803d"/>
+    <text x="516" y="658">Consumer</text>
+    <rect x="606" y="648" width="18" height="13" rx="3" fill="#f1f5f9" stroke="#64748b" stroke-dasharray="4 2"/>
+    <text x="630" y="658">External dependency</text>
+    <rect x="782" y="648" width="18" height="13" rx="3" fill="#fef9c3" stroke="#ca8a04"/>
+    <text x="806" y="658">Toolchain</text>
+  </g>
+
+  <!-- Edges (drawn above the boxes so the lines and arrowheads are never covered) -->
+  <g stroke="#475569" stroke-width="1.6" fill="none">
+    <!-- toolchain -->
+    <path d="M180,124 L180,250" marker-end="url(#arrow)"/>
+    <path d="M630,124 L630,150" marker-end="url(#arrow)"/>
+    <!-- consumers import fsm -->
+    <path d="M560,250 L618,345" marker-end="url(#arrow)"/>
+    <path d="M560,362 L618,372" marker-end="url(#arrow)"/>
+    <path d="M560,500 L618,408" marker-end="url(#arrow)"/>
+    <!-- consumers -> external deps (left) -->
+    <path d="M370,252 L302,286" marker-end="url(#arrow)"/>
+    <path d="M370,352 L302,322" marker-end="url(#arrow)"/>
+    <path d="M370,505 L302,509" marker-end="url(#arrow)"/>
+    <!-- fsm -> STL header units (right) -->
+    <path d="M872,378 L938,378" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Edge labels (drawn last so nothing covers them) -->
+  <g font-size="11" fill="#475569" style="paint-order:stroke; stroke:#ffffff; stroke-width:3.5px; stroke-linejoin:round;">
+    <text x="192" y="196">restores</text>
+    <text x="642" y="142">builds</text>
+    <text x="596" y="288">import fsm</text>
+    <text x="596" y="352">import fsm</text>
+    <text x="596" y="462">import fsm</text>
+    <text x="336" y="256" text-anchor="middle">#include</text>
+    <text x="336" y="330" text-anchor="middle">#include</text>
+    <text x="336" y="498" text-anchor="middle">links</text>
+    <text x="905" y="371" text-anchor="middle">imports</text>
+  </g>
+</svg>

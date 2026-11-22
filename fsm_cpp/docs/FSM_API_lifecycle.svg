@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="470" viewBox="0 0 1080 470" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#0f172a" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="1080" height="470" fill="#ffffff"/>
+
+  <text x="540" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">fsm::dfa — lifecycle: create → build → initialize → run → query</text>
+  <text x="540" y="52" text-anchor="middle" font-size="12" fill="#64748b">M = (Σ, S, s₀, δ, F) · build once (chainable), then drive live one Symbol at a time</text>
+
+  <!-- ===== Phase boxes ===== -->
+  <g filter="url(#sh)">
+    <rect x="28"  y="80" width="150" height="86"  rx="10" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+    <rect x="206" y="80" width="300" height="86"  rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+    <rect x="534" y="80" width="170" height="86"  rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+    <rect x="732" y="80" width="320" height="86"  rx="10" fill="#e0e7ff" stroke="#4338ca" stroke-width="1.6"/>
+  </g>
+
+  <!-- 1. construct -->
+  <text x="103" y="104" text-anchor="middle" font-size="12.5" font-weight="700" fill="#334155">1 · construct</text>
+  <text x="103" y="128" text-anchor="middle" font-size="11" fill="#475569" font-family="Consolas, monospace">dfa&lt;State,</text>
+  <text x="103" y="144" text-anchor="middle" font-size="11" fill="#475569" font-family="Consolas, monospace">Symbol&gt; m;</text>
+
+  <!-- 2. build -->
+  <text x="356" y="104" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1e3a8a">2 · BUILD  (chainable, returns dfa&amp;)</text>
+  <g font-size="10.5" fill="#1d4ed8" text-anchor="middle" font-family="Consolas, monospace">
+    <text x="356" y="124">start(s0) · accept(F)</text>
+    <text x="356" y="140">on(from, sym, to [, guard])</text>
+    <text x="356" y="156">on_entry · on_exit · undefined · subscribe</text>
+  </g>
+
+  <!-- 3. initialize -->
+  <text x="619" y="104" text-anchor="middle" font-size="12.5" font-weight="700" fill="#14532d">3 · reset()</text>
+  <g font-size="10.5" fill="#166534" text-anchor="middle">
+    <text x="619" y="126">enter s₀ · become live</text>
+    <text x="619" y="142">fire on_entry(s₀)</text>
+    <text x="619" y="158">(Moore)</text>
+  </g>
+
+  <!-- 4. run -->
+  <text x="892" y="104" text-anchor="middle" font-size="12.5" font-weight="700" fill="#312e81">4 · RUN  —  step(sym) / run(seq)</text>
+  <g font-size="10.5" fill="#4338ca" text-anchor="middle">
+    <text x="892" y="126" font-family="Consolas, monospace">real transition: on_exit(from) → observer → on_entry(to)</text>
+    <text x="892" y="144">undefined / guard-fail →  halt (die)  |  ignore (stay)</text>
+    <text x="892" y="160" font-style="italic" fill="#6366f1">loops: one Symbol per step()</text>
+  </g>
+
+  <!-- phase arrows -->
+  <g stroke="#475569" stroke-width="1.8" fill="none">
+    <path d="M178,123 L206,123" marker-end="url(#arrow)"/>
+    <path d="M506,123 L534,123" marker-end="url(#arrow)"/>
+    <path d="M704,123 L732,123" marker-end="url(#arrow)"/>
+  </g>
+  <!-- run self-loop -->
+  <path d="M892,166 C 892,196 1012,196 1012,166" stroke="#4338ca" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- ===== Query box (fed by reset + run) ===== -->
+  <g filter="url(#sh)">
+    <rect x="534" y="232" width="518" height="74" rx="10" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.6"/>
+  </g>
+  <text x="793" y="256" text-anchor="middle" font-size="12.5" font-weight="700" fill="#854d0e">QUERY  (any time while live)</text>
+  <g font-size="11" fill="#a16207" text-anchor="middle" font-family="Consolas, monospace">
+    <text x="793" y="278">current() · live() · accepted()</text>
+    <text x="793" y="296">can(sym) · available()</text>
+  </g>
+  <g stroke="#ca8a04" stroke-width="1.5" fill="none" stroke-dasharray="5 3">
+    <path d="M619,166 C 619,205 660,205 700,230" marker-end="url(#arrow)"/>
+    <path d="M892,166 L892,230" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- ===== accepts() pure lane ===== -->
+  <g filter="url(#sh)">
+    <rect x="28" y="356" width="1024" height="78" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.6"/>
+  </g>
+  <text x="48" y="380" font-size="12.5" font-weight="700" fill="#6b21a8">Pure language query — accepts(word)</text>
+  <text x="48" y="402" font-size="11" fill="#7c3aed">Runs the word from s₀ through δ (guards evaluated) and reports whether it ends in an accepting state (∈ F).</text>
+  <text x="48" y="420" font-size="11" fill="#7c3aed" font-style="italic">Side-effect free: does NOT mutate the machine, fire on_entry/on_exit, call the observer, or apply the on_undefined policy (undefined ⇒ reject).</text>
+  <!-- built table feeds accepts -->
+  <path d="M300,166 C 300,250 150,260 120,354" stroke="#7c3aed" stroke-width="1.5" fill="none" stroke-dasharray="5 3" marker-end="url(#arrow)"/>
+  <text x="196" y="250" font-size="9.5" fill="#7c3aed" style="paint-order:stroke; stroke:#ffffff; stroke-width:3px;">uses the built table,</text>
+  <text x="196" y="262" font-size="9.5" fill="#7c3aed" style="paint-order:stroke; stroke:#ffffff; stroke-width:3px;">skips reset/step</text>
+
+  <!-- ===== Legend ===== -->
+  <g font-size="11" fill="#334155">
+    <rect x="28"  y="446" width="15" height="11" rx="3" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="49"  y="455">build</text>
+    <rect x="104" y="446" width="15" height="11" rx="3" fill="#dcfce7" stroke="#15803d"/>
+    <text x="125" y="455">initialize</text>
+    <rect x="204" y="446" width="15" height="11" rx="3" fill="#e0e7ff" stroke="#4338ca"/>
+    <text x="225" y="455">run</text>
+    <rect x="276" y="446" width="15" height="11" rx="3" fill="#fef9c3" stroke="#ca8a04"/>
+    <text x="297" y="455">query</text>
+    <rect x="356" y="446" width="15" height="11" rx="3" fill="#faf5ff" stroke="#7c3aed"/>
+    <text x="377" y="455">pure accepts()</text>
+  </g>
+</svg>

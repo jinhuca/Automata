@@ -1,0 +1,69 @@
+# ============================================================
+# Automata — parent repo .gitignore
+# Subproject(s) (fsm_cpp) are git submodules and carry their own
+# .gitignore for build output. The entries below also apply to any
+# stray artifacts at this level.
+# ============================================================
+
+# ---- Build output ----
+build/
+build-*/
+out/
+bin/
+obj/
+cmake-build-*/
+x64/
+x86/
+[Dd]ebug/
+[Rr]elease/
+
+# ---- vcpkg (manifest install tree; keep vcpkg.json) ----
+vcpkg_installed/
+
+# ---- CMake ----
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+CMakeUserPresets.json
+
+# ---- Visual Studio / MSBuild ----
+.vs/
+*.user
+*.suo
+*.VC.db
+*.VC.VC.opendb
+
+# ---- Compiler / linker artifacts ----
+*.obj
+*.o
+*.exe
+*.dll
+*.lib
+*.a
+*.exp
+*.ilk
+*.pdb
+*.idb
+*.ifc
+
+# ---- Qt / Qt Creator ----
+*.autosave
+*.qmlc
+*.jsc
+.qtcreator/
+
+# ---- Python tooling ----
+__pycache__/
+*.pyc
+
+# ---- Editor / tooling ----
+.vscode/
+.idea/
+.claude/
+session-state/
+
+# ---- OS cruft ----
+Thumbs.db
+Desktop.ini
+.DS_Store

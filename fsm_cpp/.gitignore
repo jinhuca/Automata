@@ -1,0 +1,61 @@
+# ---- Build output ----
+build/
+build-*/
+out/
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# ---- vcpkg (manifest install tree; keep vcpkg.json) ----
+vcpkg_installed/
+
+# ---- CMake ----
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+*.cmake.state
+CMakeUserPresets.json
+
+# ---- Visual Studio / MSBuild ----
+.vs/
+*.user
+*.suo
+*.VC.db
+*.VC.VC.opendb
+
+# ---- Qt / Qt Creator ----
+.qtcreator/
+*.autosave
+*.qmlc
+*.jsc
+
+# ---- Compiler / linker artifacts ----
+*.obj
+*.o
+*.exe
+*.dll
+*.lib
+*.a
+*.exp
+*.ilk
+*.pdb
+*.idb
+*.ifc
+
+# ---- Editor / tooling ----
+.vscode/
+
+# ---- Claude Code local state ----
+.claude/
+session-state/
+
+.fake
+
+# ---- fsm_visualizer saved documents (keep the committed example) ----
+fsm_visualizer/*.json
+fsm_visualizer/examples/*.json
+!fsm_visualizer/examples/generator3_console.json

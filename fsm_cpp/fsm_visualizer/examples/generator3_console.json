@@ -1,0 +1,34 @@
+{
+    "version": 1,
+    "definition": {
+        "symbols": "CatheterConnected, CatheterDisconnected, Prepare, ChargeComplete, Pace, Confirm, Deliver, AblateComplete, CooldownStart, CooldownComplete, Standby, ChargedTimeout, AblateReadyTimeout, Abort, Fault",
+        "states": "CatheterDisconnected, SystemReady, Charging, Charged, PaceCapture, AblateReady, AblateActive, AblateComplete, Cooldown",
+        "transitions": "CatheterDisconnected, CatheterConnected, SystemReady\nSystemReady, Prepare, Charging\nCharging, ChargeComplete, Charged\nCharged, Pace, PaceCapture\nPaceCapture, Confirm, AblateReady\nCharged, Confirm, AblateReady\nAblateReady, Deliver, AblateActive\nAblateActive, AblateComplete, AblateComplete\nAblateComplete, CooldownStart, Cooldown\nCooldown, CooldownComplete, Charged\nCooldown, Standby, SystemReady\nCharged, ChargedTimeout, SystemReady\nAblateReady, AblateReadyTimeout, Charged\nPaceCapture, Abort, Charged\nAblateReady, Abort, Charged\nAblateActive, Abort, Charged\nSystemReady, CatheterDisconnected, CatheterDisconnected\nCharging, CatheterDisconnected, CatheterDisconnected\nCharged, CatheterDisconnected, CatheterDisconnected\nAblateReady, CatheterDisconnected, CatheterDisconnected\nCatheterDisconnected, Fault, CatheterDisconnected\nSystemReady, Fault, SystemReady\nCharging, Fault, SystemReady\nCharged, Fault, SystemReady\nPaceCapture, Fault, SystemReady\nAblateReady, Fault, SystemReady\nAblateActive, Fault, SystemReady\nAblateComplete, Fault, SystemReady\nCooldown, Fault, SystemReady",
+        "initial": "CatheterDisconnected",
+        "accept": "CatheterDisconnected, SystemReady, Charged"
+    },
+    "view": {
+        "nodes": [
+            { "name": "CatheterDisconnected", "x": 110, "y": 250, "pinned": true },
+            { "name": "SystemReady",          "x": 250, "y": 250, "pinned": true },
+            { "name": "Charging",             "x": 380, "y": 130, "pinned": true },
+            { "name": "Charged",              "x": 520, "y": 130, "pinned": true },
+            { "name": "PaceCapture",          "x": 520, "y": 300, "pinned": true },
+            { "name": "AblateReady",          "x": 660, "y": 130, "pinned": true },
+            { "name": "AblateActive",         "x": 790, "y": 250, "pinned": true },
+            { "name": "AblateComplete",       "x": 660, "y": 370, "pinned": true },
+            { "name": "Cooldown",             "x": 470, "y": 370, "pinned": true }
+        ],
+        "edgeBend": {},
+        "edgeSelf": {},
+        "edgeAnchor": {},
+        "edgeStyle": "curved",
+        "curvature": 26,
+        "tokenStyle": "comet",
+        "initialColor": "#15803d",
+        "acceptColor": "#15803d",
+        "currentColor": "#f59e0b",
+        "tokenColor": "#2563eb"
+    },
+    "run": { "stepInterval": 650 }
+}
