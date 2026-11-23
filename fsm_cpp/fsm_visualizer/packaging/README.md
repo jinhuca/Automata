@@ -19,7 +19,7 @@ Contents:
 
 ### Prerequisites (one-time)
 
-- **Qt 6.8.3, MinGW 64-bit** — expected at `C:\Qt\6.8.3\mingw_64`
+- **Qt 6.12.0, MinGW 64-bit** — expected at `C:\Qt\6.12.0\mingw_64`
   (with the matching toolchain under `C:\Qt\Tools\mingw1310_64` and
   `C:\Qt\Tools\Ninja`).
 - **Inno Setup 6** — install once with:
@@ -66,7 +66,7 @@ committed.
   **Code signing** below).
 - Override tool locations if your install differs:
   ```powershell
-  packaging\package.ps1 -QtDir "C:\Qt\6.8.3\mingw_64" `
+  packaging\package.ps1 -QtDir "C:\Qt\6.12.0\mingw_64" `
                         -MingwDir "C:\Qt\Tools\mingw1310_64" `
                         -Ninja "C:\Qt\Tools\Ninja\ninja.exe" `
                         -Iscc  "C:\...\Inno Setup 6\ISCC.exe"
@@ -89,12 +89,12 @@ cmake -S . -B build-release -G Ninja -DCMAKE_BUILD_TYPE=Release ^
   -DCMAKE_CXX_COMPILER=C:/Qt/Tools/mingw1310_64/bin/g++.exe ^
   -DCMAKE_RC_COMPILER=C:/Qt/Tools/mingw1310_64/bin/windres.exe ^
   -DCMAKE_MAKE_PROGRAM=C:/Qt/Tools/Ninja/ninja.exe ^
-  -DCMAKE_PREFIX_PATH=C:/Qt/6.8.3/mingw_64
+  -DCMAKE_PREFIX_PATH=C:/Qt/6.12.0/mingw_64
 cmake --build build-release
 
 mkdir build-release\dist
 copy build-release\appFsmVisualizer.exe build-release\dist\
-C:\Qt\6.8.3\mingw_64\bin\windeployqt.exe --release --compiler-runtime --qmldir qml build-release\dist\appFsmVisualizer.exe
+C:\Qt\6.12.0\mingw_64\bin\windeployqt.exe --release --compiler-runtime --qmldir qml build-release\dist\appFsmVisualizer.exe
 
 "%LOCALAPPDATA%\Programs\Inno Setup 6\ISCC.exe" packaging\installer.iss
 ```

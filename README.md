@@ -24,7 +24,7 @@ dependencies via vcpkg.
 | Dependency | Needed by | Notes |
 | ---------- | --------- | ----- |
 | **Visual Studio 2022 (MSVC)** | `FiniteStateMachine.sln` — core library, demos, tests | C++23 (`/std:c++23`). Tests use the built-in CppUnitTest framework. |
-| **Qt 6.8.x** (components: `Quick`, `QuickControls2`, `Quick3D`) | `fsm_visualizer` (CMake) | Must be installed separately — **not** managed by vcpkg. Reference build used `C:/Qt/6.8.3/mingw_64`. |
+| **Qt 6.12.x** (min 6.5; components: `Quick`, `QuickControls2`, `Quick3D`) | `fsm_visualizer` (CMake) | Must be installed separately — **not** managed by vcpkg. Reference build used `C:/Qt/6.12.0/mingw_64`. |
 | **vcpkg** | restoring `rxcpp` | Manifest mode via `fsm_cpp/vcpkg.json` (baseline pinned). Provides **rxcpp**, used by `src/demo` and `src/console_demo`. |
 
 ### Optional
