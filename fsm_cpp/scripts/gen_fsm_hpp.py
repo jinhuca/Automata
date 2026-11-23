@@ -38,7 +38,7 @@ PREAMBLE = """\
 // fsm uses C++20 concepts and <ranges>. Fail early with a clear message on a
 // too-old toolchain (e.g. the MinGW 8.1 kit) instead of a wall of errors.
 #if defined(__GNUC__) && !defined(__clang__) && (__GNUC__ < 11)
-#  error "fsm.hpp requires a C++20 compiler (GCC >= 11). Point the MinGW kit at the Qt 6.8 bundled MinGW 13.1.0, not MinGW 8.1."
+#  error "fsm.hpp requires a C++20 compiler (GCC >= 11). Point the MinGW kit at the Qt 6.12 bundled MinGW 13.1.0, not MinGW 8.1."
 #endif
 
 #include <concepts>

@@ -67,7 +67,7 @@ for /d %%S in ("%~1\*") do (
   set "nm=%%~nxS"
 
   set "isbuild=0"
-  for %%N in (build out bin obj CMakeFiles x64 x86 Debug Release __pycache__) do if /i "!nm!"=="%%N" set "isbuild=1"
+  for %%N in (build out bin obj CMakeFiles .vs x64 x86 Debug Release __pycache__) do if /i "!nm!"=="%%N" set "isbuild=1"
   if /i "!nm:~0,6!"=="build-"       set "isbuild=1"
   if /i "!nm:~0,12!"=="cmake-build-" set "isbuild=1"
 

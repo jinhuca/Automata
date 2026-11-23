@@ -39,6 +39,7 @@ NAME_ARGS=(
   -name 'obj'            -o
   -name 'cmake-build-*'  -o
   -name 'CMakeFiles'     -o
+  -name '.vs'            -o
   -name 'x64'            -o
   -name 'x86'            -o
   -name 'Debug'          -o

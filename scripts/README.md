@@ -18,7 +18,7 @@ Both do exactly the same thing, never touch source files, and support a
 ## What gets deleted
 
 - **Directories** named: `build`, `build-*`, `out`, `bin`, `obj`,
-  `cmake-build-*`, `CMakeFiles`, `x64`, `x86`, `Debug`, `Release`,
+  `cmake-build-*`, `CMakeFiles`, `.vs`, `x64`, `x86`, `Debug`, `Release`,
   `__pycache__`
 - **Stray files**: `CMakeCache.txt`, `cmake_install.cmake`, `CTestTestfile.cmake`
 - With `--deep` **only**: also `vcpkg_installed/` (the vcpkg dependency tree —

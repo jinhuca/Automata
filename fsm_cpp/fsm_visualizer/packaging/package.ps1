@@ -22,7 +22,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 # Resolve the Qt kit. Prefer the requested <QtVer>, but if it isn't installed on
-# this machine (e.g. only 6.12.0 is present, or Qt lives under C:\Qt16), fall back
+# this machine (e.g. only a different Qt version is present, or Qt lives under C:\Qt16), fall back
 # to the newest mingw_64 kit found under a known Qt root — so one script builds
 # across machines.
 $QtRoots = @($QtRoot, "C:\Qt", "C:\Qt16", "D:\Qt", "D:\Qt16") |
